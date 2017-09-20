@@ -22,7 +22,7 @@ class EIT(Person):
         return random.choice(fun_facts)
 
     def __repr__(self):
-        return "EIT Details\nName: {}\nNationality: {}".format(
+        return "EIT Details: Name: {} \tNationality: {}".format(
             self.name, self.nationality)
 
 
@@ -82,7 +82,7 @@ class School:
                     print("Valid EIT!!!!: {}".format(eit_object.nationality))
                 except ValueError:
                     print("Invalid EIT!!")
-        # self.display_eits()
+        self.display_eits()
 
 if __name__ == "__main__":
     mest = School()
