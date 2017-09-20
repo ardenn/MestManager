@@ -16,7 +16,7 @@ class EIT(Person):
                            "Nigeria", "Ivory Coast", "South Africa"]:
             super().__init__(name, nationality)
         else:
-            print("Error!!!! Not a valid EIT!!")
+            raise ValueError("Error!!!! Not a valid EIT!!")
 
     def recite_fun_fact(self, fun_facts=[]):
         return random.choice(fun_facts)
@@ -64,19 +64,25 @@ class School:
 
     def add_fellow(self, fellow):
         self.fellows.append(fellow)
-        # return self.display_fellows()
+        return self.display_fellows()
 
     def add_eit(self, eit):
         self.eits.append(eit)
-        # return self.display_eits()
+        return self.display_eits()
 
     def read_eits(self, filename):
         with open(filename) as read_file:
             read_file.readline()
             for line in read_file.readlines():
+                valid_eit = False
                 eit_data = line.strip().split(",")
-                self.add_eit(EIT(*eit_data))
-        self.display_eits()
+                try:
+                    eit_object = EIT(*eit_data)
+                    self.eits.append(eit_object)
+                    print("Valid EIT!!!!: {}".format(eit_object.nationality))
+                except ValueError:
+                    print("Invalid EIT!!")
+        # self.display_eits()
 
 if __name__ == "__main__":
     mest = School()
@@ -84,8 +90,10 @@ if __name__ == "__main__":
 andrew = Fellow("Andrew", "Chile", 1)
 francis = Fellow("Francis", "South Sudan", 2)
 
-# cave = EIT("Cavendish", "Honduras")
-# roja = EIT("Rodgers", "Kenya")
+#cave = EIT("Cavendish", "Honduras")
+#roja = EIT("Rodgers", "Kenya")
+
+# print(cave.name)
 
 # mest.add_eit(roja)
 # print("\n")
@@ -107,5 +115,5 @@ francis = Fellow("Francis", "South Sudan", 2)
 # print("\n")
 # cave.recite_fun_fact(tech_facts)
 # # print("\n")
-# filename = input("Enter filename: ")
-# mest.read_eits(filename)
+filename = input("Enter filename: ")
+mest.read_eits(filename)
