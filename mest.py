@@ -9,6 +9,15 @@ class Person:
         self.nationality = nationality
 
 
+class MoneyException(Exception):
+
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return repr(self.value)
+
+
 class EIT(Person):
 
     def __init__(self, name, nationality):
@@ -27,10 +36,17 @@ class EIT(Person):
 
 
 class Fellow(Person):
+    created_fellows = 0
 
     def __init__(self, name, nationality, happiness_level):
-        super().__init__(name, nationality)
-        self.happiness_level = happiness_level
+
+        if Fellow.created_fellows == 4:
+            #raise MoneyException("We cannot afford to hire {}".format(name))
+            print("MoneyException: We cannot afford to hire {}".format(name))
+        else:
+            super().__init__(name, nationality)
+            self.happiness_level = happiness_level
+            Fellow.created_fellows += 1
 
     def eat(self, food_amount):
         self.happiness_level += food_amount
@@ -89,6 +105,9 @@ if __name__ == "__main__":
 
 andrew = Fellow("Andrew", "Chile", 1)
 francis = Fellow("Francis", "South Sudan", 2)
+miish = Fellow("Andrew", "usa", 1)
+edem = Fellow("Edem", "ghana", 2)
+roja = Fellow("roja", "GH", 1)
 
 #cave = EIT("Cavendish", "Honduras")
 #roja = EIT("Rodgers", "Kenya")
@@ -115,5 +134,5 @@ francis = Fellow("Francis", "South Sudan", 2)
 # print("\n")
 # cave.recite_fun_fact(tech_facts)
 # # print("\n")
-filename = input("Enter filename: ")
-mest.read_eits(filename)
+# filename = input("Enter filename: ")
+# mest.read_eits(filename)
