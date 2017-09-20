@@ -44,7 +44,7 @@ class Fellow(Person):
             try:
                 raise MoneyException(
                     "We cannot afford to hire {}".format(name))
-            except MoneyException as e:
+            except MoneyException:
                 print("We cannot afford to hire {}".format(name))
         else:
             super().__init__(name, nationality)
