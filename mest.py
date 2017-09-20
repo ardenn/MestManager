@@ -45,7 +45,7 @@ class Fellow(Person):
                 raise MoneyException(
                     "We cannot afford to hire {}".format(name))
             except MoneyException:
-                print("We cannot afford to hire {}".format(name))
+                print("MoneyException: We cannot afford to hire {}".format(name))
         else:
             super().__init__(name, nationality)
             self.happiness_level = happiness_level
