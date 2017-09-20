@@ -41,8 +41,11 @@ class Fellow(Person):
     def __init__(self, name, nationality, happiness_level):
 
         if Fellow.created_fellows == 4:
-            #raise MoneyException("We cannot afford to hire {}".format(name))
-            print("MoneyException: We cannot afford to hire {}".format(name))
+            try:
+                raise MoneyException(
+                    "We cannot afford to hire {}".format(name))
+            except MoneyException as e:
+                print("We cannot afford to hire {}".format(name))
         else:
             super().__init__(name, nationality)
             self.happiness_level = happiness_level
@@ -103,36 +106,5 @@ class School:
 if __name__ == "__main__":
     mest = School()
 
-andrew = Fellow("Andrew", "Chile", 1)
-francis = Fellow("Francis", "South Sudan", 2)
-miish = Fellow("Andrew", "usa", 1)
-edem = Fellow("Edem", "ghana", 2)
-roja = Fellow("roja", "GH", 1)
-
-#cave = EIT("Cavendish", "Honduras")
-#roja = EIT("Rodgers", "Kenya")
-
-# print(cave.name)
-
-# mest.add_eit(roja)
-# print("\n")
-# mest.add_fellow(andrew)
-# print("\n")
-# mest.add_fellow(francis)
-# print("\n")
-# mest.add_eit(cave)
-# print("\n")
-
-# print(andrew.teach(5))
-# print("\n")
-# print(francis.eat(3))
-# print("\n")
-
-# tech_facts = ["teach is cool", "tech fun fact", "i love tech"]
-# print("\n")
-# roja.recite_fun_fact(tech_facts)
-# print("\n")
-# cave.recite_fun_fact(tech_facts)
-# # print("\n")
-# filename = input("Enter filename: ")
-# mest.read_eits(filename)
+filename = input("Enter filename: ")
+mest.read_eits(filename)
